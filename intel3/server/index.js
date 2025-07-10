@@ -18,10 +18,17 @@ mongoose.connect(process.env.MONGODB_URI, {
 }).then(() => console.log('MongoDB connected successfully.'))
   .catch(err => console.error('MongoDB connection error:', err));
 
-// --- Patient Schema for storing names ---
+// --- Patient Schema for storing names and vital signs ---
 const PatientSchema = new mongoose.Schema({
   patient_id: { type: String, required: true, unique: true },
   fullName: { type: String, required: true },
+  // Add vital signs fields
+  Heart_Rate: { type: Number },
+  Respiratory_Rate: { type: Number },
+  Body_Temperature: { type: Number },
+  Oxygen_Saturation: { type: Number },
+  Systolic_Blood_Pressure: { type: Number },
+  Diastolic_Blood_Pressure: { type: Number }
 });
 const Patient = mongoose.model('Patient', PatientSchema);
 
@@ -52,11 +59,20 @@ app.get('/api/patients', async (req, res) => {
     const patientsFromDb = await Patient.find({});
     const patientNameMap = new Map(patientsFromDb.map(p => [p.patient_id, p.fullName]));
 
-    // 3. Enrich the queue data with names
-    const enrichedQueue = queue.map(patient => ({
-      ...patient,
-      name: patientNameMap.get(patient.patient_id) || 'Anonymous'
-    }));
+    // 3. Enrich the queue data with names and vital signs
+    const enrichedQueue = queue.map(patient => {
+      const patientFromDb = patientsFromDb.find(p => p.patient_id === patient.patient_id);
+      return {
+        ...patient,
+        name: patientFromDb ? patientFromDb.fullName : 'Anonymous',
+        Heart_Rate: patientFromDb ? patientFromDb.Heart_Rate : undefined,
+        Respiratory_Rate: patientFromDb ? patientFromDb.Respiratory_Rate : undefined,
+        Body_Temperature: patientFromDb ? patientFromDb.Body_Temperature : undefined,
+        Oxygen_Saturation: patientFromDb ? patientFromDb.Oxygen_Saturation : undefined,
+        Systolic_Blood_Pressure: patientFromDb ? patientFromDb.Systolic_Blood_Pressure : undefined,
+        Diastolic_Blood_Pressure: patientFromDb ? patientFromDb.Diastolic_Blood_Pressure : undefined
+      };
+    });
 
     res.json(enrichedQueue);
   } catch (error) {
@@ -107,11 +123,17 @@ app.post('/api/patients', async (req, res) => {
     // 3. Find the new patient in the queue (one that is not already in our DB)
     const newPatientInQueue = queue.find(p => !savedPatientIds.has(p.patient_id));
 
-    // 4. Now we have the patient_id. Save the name to MongoDB.
+    // 4. Now we have the patient_id. Save the name and vital signs to MongoDB.
     if (newPatientInQueue && newPatientInQueue.patient_id) {
       await Patient.create({
         patient_id: newPatientInQueue.patient_id,
-        fullName: fullName
+        fullName: fullName,
+        Heart_Rate: vitalSigns.heartRate,
+        Respiratory_Rate: vitalSigns.respiratoryRate,
+        Body_Temperature: vitalSigns.temperature,
+        Oxygen_Saturation: vitalSigns.oxygenSaturation,
+        Systolic_Blood_Pressure: vitalSigns.bloodPressureSystolic,
+        Diastolic_Blood_Pressure: vitalSigns.bloodPressureDiastolic
       });
     }
 

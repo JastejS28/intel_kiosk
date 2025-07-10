@@ -69,6 +69,32 @@ function AdminDashboard() {
     return { level: 'Low', color: '#6CC24A' };
   };
 
+  // Add this function before getPriorityInfo
+  const getAbnormalVitals = (patient) => {
+    const vitals = [];
+    if (!patient) return vitals;
+
+    if (patient.Heart_Rate && (patient.Heart_Rate < 60 || patient.Heart_Rate > 100)) {
+      vitals.push(`Heart Rate: ${patient.Heart_Rate} BPM`);
+    }
+    if (patient.Systolic_Blood_Pressure && (patient.Systolic_Blood_Pressure < 90 || patient.Systolic_Blood_Pressure > 120)) {
+      vitals.push(`Systolic BP: ${patient.Systolic_Blood_Pressure} mmHg`);
+    }
+    if (patient.Diastolic_Blood_Pressure && (patient.Diastolic_Blood_Pressure < 60 || patient.Diastolic_Blood_Pressure > 80)) {
+      vitals.push(`Diastolic BP: ${patient.Diastolic_Blood_Pressure} mmHg`);
+    }
+    if (patient.Body_Temperature && (patient.Body_Temperature < 36.1 || patient.Body_Temperature > 37.2)) {
+      vitals.push(`Temp: ${patient.Body_Temperature}°C`);
+    }
+    if (patient.Oxygen_Saturation && patient.Oxygen_Saturation < 95) {
+      vitals.push(`O2 Sat: ${patient.Oxygen_Saturation}%`);
+    }
+    if (patient.Respiratory_Rate && (patient.Respiratory_Rate < 12 || patient.Respiratory_Rate > 20)) {
+      vitals.push(`Resp. Rate: ${patient.Respiratory_Rate}`);
+    }
+    return vitals;
+  };
+
   const highPriorityCount = queue.filter(p => (p.priority_score || 0) > 20).length;
   const lowPriorityCount = queue.filter(p => (p.priority_score || 0) <= 20).length;
 
@@ -131,6 +157,7 @@ function AdminDashboard() {
                   <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Position</TableCell>
                   <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Patient Name</TableCell>
                   <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Priority</TableCell>
+                  <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Abnormal Vitals</TableCell>
                   <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Wait Time</TableCell>
                   <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>Check-in Time</TableCell>
                 </TableRow>
@@ -138,25 +165,40 @@ function AdminDashboard() {
               <TableBody>
                 {loading && queue.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={5} align="center" sx={{ py: 5 }}>
+                    <TableCell colSpan={6} align="center" sx={{ py: 5 }}>
                       <CircularProgress />
                     </TableCell>
                   </TableRow>
                 ) : queue.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={5} align="center" sx={{ py: 5 }}>
+                    <TableCell colSpan={6} align="center" sx={{ py: 5 }}>
                       The queue is currently empty.
                     </TableCell>
                   </TableRow>
                 ) : (
                   queue.map((patient) => {
                     const { level, color } = getPriorityInfo(patient);
+                    const abnormalVitals = getAbnormalVitals(patient);
+                    
                     return (
                       <TableRow key={patient.patient_id} hover>
                         <TableCell>{patient.queue_position}</TableCell>
                         <TableCell sx={{ fontWeight: 'bold' }}>{patient.name || 'Processing...'}</TableCell>
                         <TableCell>
                           <Chip label={level} size="small" sx={{ bgcolor: color, color: 'white' }} />
+                        </TableCell>
+                        <TableCell>
+                          {abnormalVitals.length > 0 ? (
+                            <Box>
+                              {abnormalVitals.map((vital, idx) => (
+                                <Typography key={idx} variant="caption" display="block" color="error">
+                                  • {vital}
+                                </Typography>
+                              ))}
+                            </Box>
+                          ) : (
+                            <Typography variant="caption" color="text.secondary">None</Typography>
+                          )}
                         </TableCell>
                         <TableCell>
                           {typeof patient.estimated_wait_time === 'number'

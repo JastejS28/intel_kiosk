@@ -21,7 +21,6 @@ function QueueStatus() {
     // This logic makes the page refresh-proof by using sessionStorage.
     const storedPatientData = sessionStorage.getItem('patientData');
     const isSubmitted = sessionStorage.getItem('patientSubmitted');
-
     if (isSubmitted && storedPatientData) {
       const data = JSON.parse(storedPatientData);
       setPatientData(data);
@@ -57,6 +56,32 @@ function QueueStatus() {
   };
 
   const current = allPatients.find(p => p.patient_id === patientId);
+
+  // First, add the getAbnormalVitals function (same as in Admin.js)
+  const getAbnormalVitals = (patient) => {
+    const vitals = [];
+    if (!patient) return vitals;
+
+    if (patient.Heart_Rate && (patient.Heart_Rate < 60 || patient.Heart_Rate > 100)) {
+      vitals.push(`Heart Rate: ${patient.Heart_Rate} BPM`);
+    }
+    if (patient.Systolic_Blood_Pressure && (patient.Systolic_Blood_Pressure < 90 || patient.Systolic_Blood_Pressure > 120)) {
+      vitals.push(`Systolic BP: ${patient.Systolic_Blood_Pressure} mmHg`);
+    }
+    if (patient.Diastolic_Blood_Pressure && (patient.Diastolic_Blood_Pressure < 60 || patient.Diastolic_Blood_Pressure > 80)) {
+      vitals.push(`Diastolic BP: ${patient.Diastolic_Blood_Pressure} mmHg`);
+    }
+    if (patient.Body_Temperature && (patient.Body_Temperature < 36.1 || patient.Body_Temperature > 37.2)) {
+      vitals.push(`Temp: ${patient.Body_Temperature}°C`);
+    }
+    if (patient.Oxygen_Saturation && patient.Oxygen_Saturation < 95) {
+      vitals.push(`O2 Sat: ${patient.Oxygen_Saturation}%`);
+    }
+    if (patient.Respiratory_Rate && (patient.Respiratory_Rate < 12 || patient.Respiratory_Rate > 20)) {
+      vitals.push(`Resp. Rate: ${patient.Respiratory_Rate}`);
+    }
+    return vitals;
+  };
 
   return (
     <Box className="page-container">
@@ -96,27 +121,45 @@ function QueueStatus() {
                     <TableCell sx={{ color: 'white' }}>Position</TableCell>
                     <TableCell sx={{ color: 'white' }}>Name</TableCell>
                     <TableCell sx={{ color: 'white' }}>Priority</TableCell>
+                    <TableCell sx={{ color: 'white' }}>Abnormal Vitals</TableCell>
                     <TableCell sx={{ color: 'white' }}>Wait Time</TableCell>
                     <TableCell sx={{ color: 'white' }}>Checked In</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {allPatients.map((p, index) => (
-                    <TableRow key={p.patient_id}>
-                      <TableCell>{p.queue_position}</TableCell>
-                      <TableCell>{p.name || 'Anonymous'}</TableCell>
-                      <TableCell>
-                        <Chip
-                          label={p.priority_score > 20 ? 'High' : 'Low'}
-                          sx={{ bgcolor: getPriorityColor(p.priority_score), color: 'white' }}
-                        />
-                      </TableCell>
-                      <TableCell>{p.estimated_wait_time} min</TableCell>
-                      <TableCell>
-                        {new Date(p.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  {allPatients.map((p) => {
+                    const abnormalVitals = getAbnormalVitals(p);
+                    
+                    return (
+                      <TableRow key={p.patient_id} sx={p.patient_id === patientId ? { bgcolor: '#f5f5f5' } : {}}>
+                        <TableCell>{p.queue_position}</TableCell>
+                        <TableCell>{p.name || 'Anonymous'}</TableCell>
+                        <TableCell>
+                          <Chip
+                            label={p.priority_score > 20 ? 'High' : 'Low'}
+                            sx={{ bgcolor: getPriorityColor(p.priority_score), color: 'white' }}
+                          />
+                        </TableCell>
+                        <TableCell>
+                          {abnormalVitals.length > 0 ? (
+                            <Box>
+                              {abnormalVitals.map((vital, idx) => (
+                                <Typography key={idx} variant="caption" display="block" color="error">
+                                  • {vital}
+                                </Typography>
+                              ))}
+                            </Box>
+                          ) : (
+                            <Typography variant="caption" color="text.secondary">None</Typography>
+                          )}
+                        </TableCell>
+                        <TableCell>{p.estimated_wait_time} min</TableCell>
+                        <TableCell>
+                          {new Date(p.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
                 </TableBody>
               </Table>
             </TableContainer>
