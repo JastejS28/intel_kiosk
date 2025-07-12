@@ -1,8 +1,8 @@
-# Healthcare Kiosk – AI-Based Patient Priority Queue System
+# Intel Healthcare Kiosk
 
 ## Overview
 
-The Healthcare Kiosk is a comprehensive AI-powered system for patient triage and queue management, designed for clinics, hospitals, and community health centers. It leverages machine learning and real-time data integration to assign priority to patients based on medical urgency, vital sign abnormalities, and waiting time. The platform is robust, modular, and interoperable with India’s digital health ecosystem
+The Healthcare Kiosk is a comprehensive AI-powered system for patient triage and queue management, designed for clinics, hospitals, and community health centers. It leverages machine learning and real-time data integration to assign priority to patients based on medical urgency, vital sign abnormalities, and waiting time. The platform is robust, modular, and interoperable with India’s digital health ecosystem.
 
 ---
 
