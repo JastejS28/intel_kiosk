@@ -256,6 +256,7 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for full terms.
 - Digital Health Incentive Scheme (DHIS)
 - Open-source contributors and libraries
 - [Queue_Assigner](https://github.com/adityachanna/Queue_Assigner) for ML/RL-powered queue logic
+- Visit the website for hosted API For ML logic [Visit Website](https://queue-assigner.onrender.com/docs)
 
 ---
 
