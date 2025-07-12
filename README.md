@@ -232,9 +232,9 @@ uvicorn app:app --reload
 ## Team Members
 
 - _Add names, roles, and contact info below:_
-  - **Name 1** – Frontend Developer
-  - **Name 2** – Backend Developer
-  - **Name 3** – ML/RL Engineer
+  - **Aditya Channa** – ML/Backend Developer [Linkedin]{https://www.linkedin.com/in/adityachanna/}
+  - **Jastej Singh** – Full Stack Developer [Linkedin]{https://www.linkedin.com/in/jastej-singh-27940a290/}
+  - **Avneesh** – ML/Data Engineer [Linkedin]{https://www.linkedin.com/in/avneesh-avneesh-99a40b284/}
   - ...
 
 ---
@@ -242,8 +242,7 @@ uvicorn app:app --reload
 ## Mentors
 
 - _List mentors and advisors below:_
-  - **Mentor Name 1** – Title/Organization
-  - **Mentor Name 2** – Title/Organization
+  - **Dr. Garima Mittal** – Assistant Professor at Maharaja Agrasen Institute of Technology
 
 ---
 
@@ -258,7 +257,7 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for full terms.
 - Ayushman Bharat Digital Mission (ABDM)
 - Digital Health Incentive Scheme (DHIS)
 - Open-source contributors and libraries
-- [Queue_Assigner](https://github.com/adityachanna/Queue_Assigner) for RL-powered queue logic
+- [Queue_Assigner](https://github.com/adityachanna/Queue_Assigner) for ML/RL-powered queue logic
 
 ---
 
