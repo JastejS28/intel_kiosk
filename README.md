@@ -232,9 +232,9 @@ uvicorn app:app --reload
 ## Team Members
 
 - _Add names, roles, and contact info below:_
-  - **Aditya Channa** – ML/Backend Developer [Linkedin]{https://www.linkedin.com/in/adityachanna/}
-  - **Jastej Singh** – Full Stack Developer [Linkedin]{https://www.linkedin.com/in/jastej-singh-27940a290/}
-  - **Avneesh** – ML/Data Engineer [Linkedin]{https://www.linkedin.com/in/avneesh-avneesh-99a40b284/}
+  - **Aditya Channa** – ML/Backend Developer [Linkedin](https://www.linkedin.com/in/adityachanna/)
+  - **Jastej Singh** – Full Stack Developer [Linkedin](https://www.linkedin.com/in/jastej-singh-27940a290/)
+  - **Avneesh** – ML/Data Engineer [Linkedin](https://www.linkedin.com/in/avneesh-avneesh-99a40b284/)
   - ...
 
 ---
