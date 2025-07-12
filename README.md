@@ -60,7 +60,7 @@ The Healthcare Kiosk is a comprehensive AI-powered system for patient triage and
 ---
 
 ## System Architecture
-
+### Check the Docs [Document](https://drive.google.com/file/d/1RKoWdMFVpJxiU702eTuuMirzA8FLzWqW/view?usp=sharing)
 ```
 +----------------------+      +------------------+      +---------------------+
 |   Patient Frontend   | ---> |   Backend/API    | ---> |   ML Service (API,  |
