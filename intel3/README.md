@@ -46,7 +46,9 @@ healthcare-kiosk/
 2. Install dependencies:
 
 ```bash
-npm run install-all
+git clone repo_name
+npm i
+npm run dev
 ```
 
 ### Configuration
@@ -86,9 +88,9 @@ This will start both the server and client applications concurrently.
 
 ## Priority Assignment
 
-The system integrates with an external API (https://queue-assigner.onrender.com/docs) to assign priority scores to patients based on their vital signs. If the API is unavailable, a local algorithm will calculate the priority score.
+The system integrates with an external API (https://queue-assigner.onrender.com/docs) to assign priority scores to patients based on their vital signs. If the API is unavailable, a local algorithm will calculate the priority score
 
---> To access admin page visit: /admin
+To access admin page visit /admin for calling patients
 
 ## License
 
