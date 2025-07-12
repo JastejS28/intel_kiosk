@@ -223,9 +223,9 @@ uvicorn app:app --reload
 
 ## Video Prototype
 
-> **[https://www.youtube.com/watch?v=wuJvU3l7IYM]**
+> [![Watch the video](https://img.youtube.com/vi/wuJvU3l7IYM/maxresdefault.jpg)](https://youtu.be/wuJvU3l7IYM)
 
-- _A video demonstration of patient check-in, queue management, and admin dashboard will be available here._
+### [A video demonstration of patient check-in, queue management, and admin dashboard will be available here.](https://youtu.be/wuJvU3l7IYM)
 
 ---
 
