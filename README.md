@@ -58,20 +58,8 @@ The Healthcare Kiosk is a comprehensive AI-powered system for patient triage and
 
 ## System Architecture
 ### Check the Docs [Document](https://docs.google.com/document/d/1yJHUg3sYM_w8o5uc_CDmu1YohSXKhXw3cmgDF4s3Ud4/edit?usp=sharing)
-```
-+----------------------+      +------------------+      +---------------------+
-|   Patient Frontend   | ---> |   Backend/API    | ---> |   ML Service (API,  |
-| (React.js/MaterialUI)|      | (Node.js/Express)|      |   FastAPI + XGBoost)|
-|                      | <--- |                  | <--- |                     |
-+----------------------+      +------------------+      +---------------------+
-         |                                                        ^
-         v                                                        |
-+----------------------+                                   +----------------------+
-|   MongoDB Database   | <---------------------------------+   Admin Dashboard    |
-|  (Patient & Queue    |                                   |  (React.js/MaterialUI|
-|     Records)         |                                   |   for Health Staff)  |
-+----------------------+                                   +----------------------+
-```
+
+<img width="483" height="439" alt="image" src="https://github.com/user-attachments/assets/55231328-e408-4951-80fb-e8c4fd34b063" />
 
 ---
 
