@@ -223,7 +223,7 @@ uvicorn app:app --reload
 
 ## Video Prototype
 
-> **[Insert video link or embed here]**
+> **[https://www.youtube.com/watch?v=wuJvU3l7IYM]**
 
 - _A video demonstration of patient check-in, queue management, and admin dashboard will be available here._
 
@@ -235,7 +235,6 @@ uvicorn app:app --reload
   - **Aditya Channa** – ML/Backend Developer [Linkedin](https://www.linkedin.com/in/adityachanna/)
   - **Jastej Singh** – Full Stack Developer [Linkedin](https://www.linkedin.com/in/jastej-singh-27940a290/)
   - **Avneesh** – ML/Data Engineer [Linkedin](https://www.linkedin.com/in/avneesh-avneesh-99a40b284/)
-  - ...
 
 ---
 
