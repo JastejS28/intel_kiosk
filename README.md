@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Healthcare Kiosk is a comprehensive AI-powered system for patient triage and queue management, designed for clinics, hospitals, and community health centers. It leverages machine learning and real-time data integration to assign priority to patients based on medical urgency, vital sign abnormalities, and waiting time. The platform is robust, modular, and interoperable with India’s digital health ecosystem, supporting Ayushman Bharat Digital Mission (ABDM) and other national health initiatives.
+The Healthcare Kiosk is a comprehensive AI-powered system for patient triage and queue management, designed for clinics, hospitals, and community health centers. It leverages machine learning and real-time data integration to assign priority to patients based on medical urgency, vital sign abnormalities, and waiting time. The platform is robust, modular, and interoperable with India’s digital health ecosystem
 
 ---
 
@@ -38,9 +38,6 @@ The Healthcare Kiosk is a comprehensive AI-powered system for patient triage and
 
 - **Real-Time Queue Management:**  
   The live queue is displayed on the kiosk and admin dashboard, updating dynamically with patient status and priorities.
-
-- **Offline Scoring Fallback:**  
-  If the ML API is unreachable, a local scoring algorithm ensures uninterrupted triage.
 
 - **Admin Dashboard:**  
   Provides healthcare staff with a detailed view of the queue, patient information, abnormal vitals, and actionable controls for patient calling and queue management.
