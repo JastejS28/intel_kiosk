@@ -231,16 +231,15 @@ uvicorn app:app --reload
 
 ## Team Members
 
-- _Add names, roles, and contact info below:_
+- _Names, roles, and contact info below:_
   - **Aditya Channa** – ML/Backend Developer [Linkedin](https://www.linkedin.com/in/adityachanna/)
   - **Jastej Singh** – Full Stack Developer [Linkedin](https://www.linkedin.com/in/jastej-singh-27940a290/)
   - **Avneesh** – ML/Data Engineer [Linkedin](https://www.linkedin.com/in/avneesh-avneesh-99a40b284/)
 
 ---
 
-## Mentors
+## Mentor
 
-- _List mentors and advisors below:_
   - **Dr. Garima Mittal** – Assistant Professor at Maharaja Agrasen Institute of Technology
 
 ---
