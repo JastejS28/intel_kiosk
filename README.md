@@ -104,7 +104,6 @@ The Healthcare Kiosk is a comprehensive AI-powered system for patient triage and
 
 - **Priority Calculation:**  
   Backend sends vitals to the ML API, which returns a risk/priority score (with RL-based adjustments for fairness and learning).
-  - If the ML API is unavailable, the backend uses a local scoring function.
 
 - **Dynamic Updates:**  
   Queue is refreshed automatically (every 20–30 seconds) and on-demand (manual refresh).
@@ -179,8 +178,6 @@ The Healthcare Kiosk is a comprehensive AI-powered system for patient triage and
 ---
 
 ## Installation & Usage
-
-> **Detailed setup instructions are in [docs/SETUP.md].**
 
 **Prerequisites:**
 - Node.js (v14+)
